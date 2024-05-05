@@ -17,6 +17,8 @@ class WhatsappServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../whatsapp-cloud-api.php', 'whatsapp-cloud-api');
+        $this->app->singleton(Whatsapp::class);
+
+        $this->mergeConfigFrom(__DIR__.'/../config/whatsapp-cloud-api.php', 'whatsapp-cloud-api');
     }
 }

@@ -30,7 +30,7 @@
             "providers": [
                 "BlissJaspis\\WhatsappCloudApi\\WhatsappServiceProvider"
             ],
-            "alias": {
+            "aliases": {
                 "Whatsapp": "BlissJaspis\\WhatsappCloudApi\\Whatsapp"
             }
         }

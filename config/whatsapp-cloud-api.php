@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'graph_url' => 'https://graph.facebook.com',
-    'version_sdk' => 'v19.0',
-    'phone_number_id' => '',
-    'access_token' => ''
+    'version_sdk' => env('WHATSAPP_VERSION_SDK', 'v19.0'),
+    'bussiness_phone_number_id' => env('WHATSAPP_PHONE_NUMBER_ID', '12345'),
+    'access_token' => env('WHATSAPP_ACCESS_TOKEN', ''),
+    'country_code' => env('WHATSAPP_COUNTRY_CODE', '62')
 ];
