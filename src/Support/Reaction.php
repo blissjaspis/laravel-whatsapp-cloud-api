@@ -2,7 +2,9 @@
 
 namespace BlissJaspis\WhatsappCloudApi\Support;
 
-class Reaction
+use BlissJaspis\WhatsappCloudApi\Contracts\Message;
+
+class Reaction implements Message
 {
     protected string $defaultMessageId;
 

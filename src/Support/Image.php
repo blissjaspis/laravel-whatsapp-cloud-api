@@ -2,7 +2,9 @@
 
 namespace BlissJaspis\WhatsappCloudApi\Support;
 
-class Image
+use BlissJaspis\WhatsappCloudApi\Contracts\Message;
+
+class Image implements Message
 {
     protected string $defaultMediaIdOrUrl;
 

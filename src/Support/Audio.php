@@ -2,11 +2,13 @@
 
 namespace BlissJaspis\WhatsappCloudApi\Support;
 
+use BlissJaspis\WhatsappCloudApi\Contracts\Message;
+
 /**
  * Audio only support extension .aac, .amr, .mp3, m4a and .ogg
  * Max size 16 MB
  */
-class Audio
+class Audio implements Message
 {
     protected string $defaultMediaIdOrUrl;
 

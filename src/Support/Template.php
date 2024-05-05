@@ -2,7 +2,9 @@
 
 namespace BlissJaspis\WhatsappCloudApi\Support;
 
-class Template
+use BlissJaspis\WhatsappCloudApi\Contracts\Message;
+
+class Template implements Message
 {
     protected string $defaultName;
 

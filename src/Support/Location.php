@@ -2,7 +2,9 @@
 
 namespace BlissJaspis\WhatsappCloudApi\Support;
 
-class Location
+use BlissJaspis\WhatsappCloudApi\Contracts\Message;
+
+class Location implements Message
 {
     protected string $defaultName;
 

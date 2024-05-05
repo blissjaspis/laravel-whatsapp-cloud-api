@@ -2,11 +2,13 @@
 
 namespace BlissJaspis\WhatsappCloudApi\Support;
 
+use BlissJaspis\WhatsappCloudApi\Contracts\Message;
+
 /**
  * Video only support extension .mp4 and .3gp
  * Max size 16 MB
  */
-class Video
+class Video implements Message
 {
     protected string $defaultMediaIdOrUrl;
 

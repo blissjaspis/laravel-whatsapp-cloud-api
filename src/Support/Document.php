@@ -2,12 +2,14 @@
 
 namespace BlissJaspis\WhatsappCloudApi\Support;
 
+use BlissJaspis\WhatsappCloudApi\Contracts\Message;
+
 /**
  * Document only support extension .txt, .xls, .xlsx, .doc, docx, .ppt, pptx, and .pdf
  * 
  * Max size 100 MB
  */
-class Document
+class Document implements Message
 {
     protected string $defaultMediaIdOrUrl;
 
