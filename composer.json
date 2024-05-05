@@ -1,0 +1,40 @@
+{
+    "name": "blissjaspis/laravel-whatsapp-cloud-api",
+    "description": "Laravel package for interacting to whatsapp cloud api",
+    "type": "library",
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "*",
+        "larastan/larastan": "^2.9",
+        "orchestra/testbench": "^9.0",
+        "phpunit/phpunit": "^11.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "BlissJaspis\\WhatsappCloudApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bliss Jaspis",
+            "email": "bliss@jaspis.me",
+            "role": "developer"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BlissJaspis\\WhatsappCloudApi\\WhatsappServiceProvider"
+            ],
+            "alias": {
+                "Whatsapp": "BlissJaspis\\WhatsappCloudApi\\Whatsapp"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
