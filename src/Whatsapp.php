@@ -18,7 +18,7 @@ class Whatsapp {
             throw new PhoneNumberIdNotFound("Bussiness phone number id not found.");
         }
         
-        $this->http = Http::acceptJson()->withToken(config('whatsapp-cloud-api.access_token'))->timeout(30)->retry(3, 100);
+        // $this->http = Http::acceptJson()->withToken(config('whatsapp-cloud-api.access_token'))->timeout(30)->retry(3, 100);
 
         $this->collection = collect([
             'messaging_product' => 'whatsapp',
@@ -57,6 +57,7 @@ class Whatsapp {
 
     public function send()
     {
+        return $this->collection;
         return $this->http
             ->withBody(json_encode($this->collection), 'application/json')
             ->post($this->url());
