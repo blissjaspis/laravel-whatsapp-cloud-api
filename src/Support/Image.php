@@ -4,6 +4,10 @@ namespace BlissJaspis\WhatsappCloudApi\Support;
 
 use BlissJaspis\WhatsappCloudApi\Contracts\Message;
 
+/**
+ * Image only support extension .jpeg, .png and .webp
+ * Max size 5 MB
+ */
 class Image implements Message
 {
     protected string $defaultMediaIdOrUrl;
