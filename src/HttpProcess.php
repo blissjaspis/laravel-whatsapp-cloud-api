@@ -2,17 +2,17 @@
 
 namespace BlissJaspis\WhatsappCloudApi;
 
-use Illuminate\Support\Facades\Http;
+use BlissJaspis\WhatsappCloudApi\Exceptions\PhoneNumberIdNotFound;
 
 class HttpProcess
 {
-    protected Http $http;
-
     public function __construct()
     {
-        $this->http = Http::acceptJson()->withToken(config('whatsapp-cloud-api.access_token'))->timeout(30)->retry(3, 100);
+        if (! config('whatsapp-cloud-api.bussiness_phone_number_id')) {
+            throw new PhoneNumberIdNotFound("Bussiness phone number id not found.");
+        }
     }
-
+    
     protected function url(): string
     {
         $url = "https://graph.facebook.com";

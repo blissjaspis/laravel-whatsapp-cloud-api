@@ -5,6 +5,7 @@ namespace BlissJaspis\WhatsappCloudApi;
 use BlissJaspis\WhatsappCloudApi\Contracts\HttpRepository;
 use BlissJaspis\WhatsappCloudApi\Exceptions\PhoneNumberIdNotFound;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Http;
 
 class Whatsapp extends HttpProcess implements HttpRepository
 {
@@ -13,10 +14,6 @@ class Whatsapp extends HttpProcess implements HttpRepository
     public function __construct()
     {
         parent::__construct();
-        
-        if (! config('whatsapp-cloud-api.bussiness_phone_number_id')) {
-            throw new PhoneNumberIdNotFound("Bussiness phone number id not found.");
-        }
 
         $this->collection = collect([
             'messaging_product' => 'whatsapp',
@@ -46,7 +43,8 @@ class Whatsapp extends HttpProcess implements HttpRepository
 
     public function send()
     {
-        return $this->http
+        return Http::acceptJson()->withToken(config('whatsapp-cloud-api.access_token'))
+            ->timeout(30)->retry(3, 100)
             ->withBody(json_encode($this->collection), 'application/json')
             ->post($this->url());
     }
