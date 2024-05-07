@@ -10,7 +10,7 @@ class WhatsappServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/whatsapp-cloud-api.php' => config_path('whatsapp-cloud-api.php')
+                __DIR__.'/../config/whatsapp-cloud-api.php' => config_path('whatsapp-cloud-api.php'),
             ], 'config');
         }
     }

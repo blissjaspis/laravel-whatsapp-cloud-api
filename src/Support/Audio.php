@@ -12,8 +12,8 @@ class Audio implements Message
 {
     protected string $defaultMediaIdOrUrl;
 
-    protected string $defaultMediaSource = "asset";
-    
+    protected string $defaultMediaSource = 'asset';
+
     // asset or url
     public static function media(string $mediaIdOrUrl, string $type = 'asset')
     {
@@ -21,17 +21,17 @@ class Audio implements Message
 
         $static->defaultMediaIdOrUrl = $mediaIdOrUrl;
         $static->defaultMediaSource = $type === 'asset' ? 'asset' : 'url';
-        
+
         return $static;
     }
-    
-    public function build() : array
+
+    public function build(): array
     {
         return [
-            "type" => "audio",
-            "audio" => [
-                $this->defaultMediaSource == 'asset' ? "id" : "link" => $this->defaultMediaIdOrUrl,
-            ]
+            'type' => 'audio',
+            'audio' => [
+                $this->defaultMediaSource == 'asset' ? 'id' : 'link' => $this->defaultMediaIdOrUrl,
+            ],
         ];
     }
 }

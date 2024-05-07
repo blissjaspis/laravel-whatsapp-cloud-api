@@ -9,10 +9,10 @@ class Interactive implements Message
     public function build(): array
     {
         return [
-            "type" => "interactive",
-            "interactive" => [
-                "type" => "list"
-            ]
+            'type' => 'interactive',
+            'interactive' => [
+                'type' => 'list',
+            ],
         ];
     }
 }

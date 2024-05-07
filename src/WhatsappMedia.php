@@ -8,25 +8,27 @@ class WhatsappMedia
 {
     public static function url()
     {
-        $url = "https://graph.facebook.com";
+        $url = 'https://graph.facebook.com';
         $version = config('whatsapp-cloud-api.version_sdk');
+        $phoneNumberId = config('whatsapp-cloud-api.bussiness_phone_number_id');
 
-        return $url.'/'.$version;
+        return $url.'/'.$version.'/'.$phoneNumberId;
     }
 
     /**
-     * All media files sent through this endpoint are encrypted and persist for 30 days, 
+     * All media files sent through this endpoint are encrypted and persist for 30 days,
      * unless they are deleted earlier.
      */
-    public static function upload($file, $type)
+    public static function upload($file, string $type)
     {
         return Http::withToken(config('whatsapp-cloud-api.access_token'))
             ->timeout(30)->retry(3, 100)
             ->asMultipart()
-            ->attach('file', file_get_contents($file), $type)
+            // ->attach('file', file_get_contents($file), $type)
             ->post(static::url().'/media', [
+                'file' => fopen($file, 'r'),
                 'type' => $type,
-                'messaging_product' => 'whatsapp'
+                'messaging_product' => 'whatsapp',
             ]);
     }
 

@@ -3,9 +3,11 @@
 namespace BlissJaspis\WhatsappCloudApi;
 
 use BlissJaspis\WhatsappCloudApi\Contracts\HttpRepository;
-use BlissJaspis\WhatsappCloudApi\Exceptions\PhoneNumberIdNotFound;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 
 class Whatsapp extends HttpProcess implements HttpRepository
 {
@@ -21,31 +23,34 @@ class Whatsapp extends HttpProcess implements HttpRepository
         ]);
     }
 
-    public function to(string $phoneNumber = ''): self
+    public function to(string $phoneNumber = '', $includeCountryCode = true): self
     {
-        $cleanedNumber = str_replace('+', '', $phoneNumber);
-
-        if (substr($cleanedNumber, 0, 2) === config('whatsapp-cloud-api.country_code')) {
-            $this->collection->put('to', $phoneNumber);
-        } else {
-            $this->collection->put('to', config('whatsapp-cloud-api.country_code').$phoneNumber);
+        if ($includeCountryCode) {
+            $phoneNumber = Str::of($phoneNumber)
+                ->whenStartsWith('0', function (Stringable $string) {
+                    return $string->replaceStart('0', '')->prepend(config('whatsapp-cloud-api.country_code'));
+                })->toString();
         }
+
+        $this->collection->put('to', $phoneNumber);
 
         return $this;
     }
 
-    public function body(array $data) : self
+    public function body(array $data): self
     {
         $this->collection = $this->collection->merge($data);
 
         return $this;
     }
 
-    public function send()
+    public function send() : Response
     {
-        return Http::acceptJson()->withToken(config('whatsapp-cloud-api.access_token'))
+        $response = Http::acceptJson()->withToken(config('whatsapp-cloud-api.access_token'))
             ->timeout(30)->retry(3, 100)
-            ->withBody(json_encode($this->collection), 'application/json')
+            ->withBody($this->collection->toJson(), 'application/json')
             ->post($this->url());
+
+        return $response;
     }
 }

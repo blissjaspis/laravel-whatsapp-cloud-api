@@ -7,8 +7,8 @@ use BlissJaspis\WhatsappCloudApi\Contracts\Message;
 class LocationRequest implements Message
 {
     protected string $defaultMessage;
-    
-    public static function message(string $message) : self
+
+    public static function message(string $message): self
     {
         $static = new static();
 
@@ -17,19 +17,19 @@ class LocationRequest implements Message
         return $static;
     }
 
-    public function build() : array
-    {   
+    public function build(): array
+    {
         return [
-            "type" => "interactive",
-            "interactive" => [
-                "type" => "location_request_message",
-                "body" => [
-                    "text" => $this->defaultMessage
+            'type' => 'interactive',
+            'interactive' => [
+                'type' => 'location_request_message',
+                'body' => [
+                    'text' => $this->defaultMessage,
                 ],
-                "action" => [
-                    "name" => "send_location"
-                ]
-            ]
+                'action' => [
+                    'name' => 'send_location',
+                ],
+            ],
         ];
     }
 }

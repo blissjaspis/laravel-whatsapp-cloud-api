@@ -4,5 +4,5 @@ namespace BlissJaspis\WhatsappCloudApi\Contracts;
 
 interface Message
 {
-    public function build() : array;
+    public function build(): array;
 }

@@ -12,10 +12,10 @@ class Video implements Message
 {
     protected string $defaultMediaIdOrUrl;
 
-    protected string $defaultMediaSource = "asset";
+    protected string $defaultMediaSource = 'asset';
 
     protected string $defaultCaption;
-    
+
     // asset or url
     public static function media(string $mediaIdOrUrl, string $type = 'asset')
     {
@@ -23,7 +23,7 @@ class Video implements Message
 
         $static->defaultMediaIdOrUrl = $mediaIdOrUrl;
         $static->defaultMediaSource = $type === 'asset' ? 'asset' : 'url';
-        
+
         return $static;
     }
 
@@ -33,15 +33,15 @@ class Video implements Message
 
         return $this;
     }
-    
-    public function build() : array
+
+    public function build(): array
     {
         return [
-            "type" => "video",
-            "video" => [
-                $this->defaultMediaSource == 'asset' ? "id" : "link" => $this->defaultMediaIdOrUrl,
-                'caption' => $this->defaultCaption ?? null
-            ]
+            'type' => 'video',
+            'video' => [
+                $this->defaultMediaSource == 'asset' ? 'id' : 'link' => $this->defaultMediaIdOrUrl,
+                'caption' => $this->defaultCaption ?? null,
+            ],
         ];
     }
 }
