@@ -4,6 +4,11 @@ namespace BlissJaspis\WhatsappCloudApi\Support;
 
 use BlissJaspis\WhatsappCloudApi\Contracts\Message;
 
+/**
+ * @method static message(string $message)
+ * @method $this disableLinkPreview()
+ * @method array build()
+ */
 class Text implements Message
 {
     protected bool $linkPreview = true;

@@ -5,6 +5,8 @@ namespace BlissJaspis\WhatsappCloudApi\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
+ * @method static \BlissJaspis\WhatsappCloudApi\WhatsappRead read()
+ * @method static \BlissJaspis\WhatsappCloudApi\WhatsappMedia media()
  * @method static \BlissJaspis\WhatsappCloudApi\Whatsapp to(string $phoneNumber = '', $includeCountryCode = true)
  * @method static \BlissJaspis\WhatsappCloudApi\Whatsapp body(array $data)
  * @method static \Illuminate\Http\Client\Response send()

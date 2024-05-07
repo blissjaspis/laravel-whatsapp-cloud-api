@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 
+/**
+ * 
+ * @method WhatsappRead read()
+ * @method WhatsappMedia media()
+ * @method Whatsapp to(string $phoneNumber = '', $includeCountryCode = true)
+ * @method Whatsapp body(array $data)
+ * @method \Illuminate\Http\Client\Response send()
+ */
 class Whatsapp extends HttpProcess implements HttpRepository
 {
     protected Collection $collection;
@@ -21,6 +29,16 @@ class Whatsapp extends HttpProcess implements HttpRepository
             'messaging_product' => 'whatsapp',
             'recipient_type' => 'individual',
         ]);
+    }
+
+    public function read()
+    {
+        return new WhatsappRead;
+    }
+
+    public function media()
+    {
+        return new WhatsappMedia;
     }
 
     public function to(string $phoneNumber = '', $includeCountryCode = true): self

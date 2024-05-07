@@ -3,6 +3,7 @@
 namespace BlissJaspis\WhatsappCloudApi\Support;
 
 use BlissJaspis\WhatsappCloudApi\Contracts\Message;
+use BlissJaspis\WhatsappCloudApi\Exceptions\TemplateComponentsEmpty;
 
 class Template implements Message
 {
@@ -35,8 +36,17 @@ class Template implements Message
         return $this;
     }
 
+    private function checkIfComponentNotEmpty() : void
+    {
+        if (empty($this->defaultComponents)) {
+            throw new TemplateComponentsEmpty("Template components empty");
+        }
+    }
+
     public function build(): array
     {
+        $this->checkIfComponentNotEmpty();
+        
         return [
             'type' => 'template',
             'template' => [
