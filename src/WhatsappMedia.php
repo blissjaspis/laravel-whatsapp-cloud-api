@@ -2,52 +2,38 @@
 
 namespace BlissJaspis\WhatsappCloudApi;
 
-use Illuminate\Support\Facades\Http;
+use BlissJaspis\WhatsappCloudApi\Contracts\WhatsappMediaContract;
+use Illuminate\Http\Client\Response;
 
-class WhatsappMedia
+class WhatsappMedia extends HttpProcess implements WhatsappMediaContract
 {
-    public static function url()
-    {
-        $url = 'https://graph.facebook.com';
-        $version = config('whatsapp-cloud-api.version_sdk');
-        $phoneNumberId = config('whatsapp-cloud-api.bussiness_phone_number_id');
-
-        return $url.'/'.$version.'/'.$phoneNumberId;
-    }
-
     /**
      * All media files sent through this endpoint are encrypted and persist for 30 days,
      * unless they are deleted earlier.
      */
-    public static function upload($file, string $type)
+    public function upload($file, string $type): Response
     {
-        return Http::withToken(config('whatsapp-cloud-api.access_token'))
-            ->timeout(30)->retry(3, 100)
-            ->asMultipart()
+        return $this->http()->asMultipart()
             // ->attach('file', file_get_contents($file), $type)
-            ->post(static::url().'/media', [
+            ->post('/media', [
                 'file' => fopen($file, 'r'),
                 'type' => $type,
                 'messaging_product' => 'whatsapp',
             ]);
     }
 
-    public static function download(string $mediaUrl)
+    public function download(string $mediaUrl): Response
     {
-        return Http::withToken(config('whatsapp-cloud-api.access_token'))->timeout(30)->retry(3, 100)->get($mediaUrl);
+        return $this->http(false)->get($mediaUrl);
     }
 
-    public static function retrieve(string $mediaId)
+    public function retrieve(string $mediaId): Response
     {
-        return Http::withToken(config('whatsapp-cloud-api.access_token'))
-            ->timeout(30)->retry(3, 100)
-            ->get(static::url().'/'.$mediaId);
+        return $this->http(false)->get("/{$mediaId}");
     }
 
-    public static function delete(string $mediaId)
+    public function delete(string $mediaId): Response
     {
-        return Http::withToken(config('whatsapp-cloud-api.access_token'))
-            ->timeout(30)->retry(3, 100)
-            ->delete(static::url().'/'.$mediaId);
+        return $this->http(false)->delete("/{$mediaId}");
     }
 }

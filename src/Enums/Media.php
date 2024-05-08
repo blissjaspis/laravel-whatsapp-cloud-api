@@ -14,11 +14,11 @@ enum Media: string
     case MSPowerpoint = 'application/vnd.ms-powerpoint';
     case MSExcel = 'application/vnd.ms-excel';
     case MSWord = 'application/msword';
-    
+
     case OpenOfficeDocument = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
     case OpenOfficePresentation = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
     case OpenOfficeSheet = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-    
+
     case AudioAAC = 'audio/aac';
     case AudioMP4 = 'audio/mp4';
     case AudioMPEG = 'audio/mpeg';

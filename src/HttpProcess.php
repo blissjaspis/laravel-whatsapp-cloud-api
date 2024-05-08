@@ -3,6 +3,8 @@
 namespace BlissJaspis\WhatsappCloudApi;
 
 use BlissJaspis\WhatsappCloudApi\Exceptions\PhoneNumberIdNotFound;
+use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Facades\Http;
 
 class HttpProcess
 {
@@ -13,12 +15,14 @@ class HttpProcess
         }
     }
 
-    protected function url(): string
+    public function http(bool $usingPhoneNumber = true): PendingRequest
     {
-        $url = 'https://graph.facebook.com';
+        $root = 'https://graph.facebook.com';
         $version = config('whatsapp-cloud-api.version_sdk');
         $phoneNumberId = config('whatsapp-cloud-api.bussiness_phone_number_id');
 
-        return $url.'/'.$version.'/'.$phoneNumberId.'/messages';
+        $apiUrl = $usingPhoneNumber ? "{$root}/{$version}/{$phoneNumberId}" : "{$root}/{$version}";
+
+        return Http::baseUrl($apiUrl)->withToken(config('whatsapp-cloud-api.access_token'))->retry(3, 300);
     }
 }

@@ -36,17 +36,17 @@ class Template implements Message
         return $this;
     }
 
-    private function checkIfComponentNotEmpty() : void
+    private function checkIfComponentNotEmpty(): void
     {
         if (empty($this->defaultComponents)) {
-            throw new TemplateComponentsEmpty("Template components empty");
+            throw new TemplateComponentsEmpty('Template components empty');
         }
     }
 
     public function build(): array
     {
         $this->checkIfComponentNotEmpty();
-        
+
         return [
             'type' => 'template',
             'template' => [
