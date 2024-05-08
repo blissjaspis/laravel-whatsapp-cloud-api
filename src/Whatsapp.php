@@ -2,9 +2,11 @@
 
 namespace BlissJaspis\WhatsappCloudApi;
 
+use Illuminate\Http\Client\Response;
+
 class Whatsapp
 {
-    public function readMessage(string $messageId)
+    public function readMessage(string $messageId): Response
     {
         return (new WhatsappRead())->send($messageId);
     }
