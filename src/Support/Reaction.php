@@ -4,7 +4,7 @@ namespace BlissJaspis\WhatsappCloudApi\Support;
 
 use BlissJaspis\WhatsappCloudApi\Contracts\Message;
 
-class Reaction implements Message
+final class Reaction implements Message
 {
     protected string $defaultMessageId;
 
@@ -13,7 +13,7 @@ class Reaction implements Message
 
     public static function messageId(string $messageId)
     {
-        $static = new static;
+        $static = new self;
 
         $static->defaultMessageId = $messageId;
 

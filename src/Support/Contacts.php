@@ -4,13 +4,13 @@ namespace BlissJaspis\WhatsappCloudApi\Support;
 
 use BlissJaspis\WhatsappCloudApi\Contracts\Message;
 
-class Contacts implements Message
+final class Contacts implements Message
 {
     protected array $components;
 
     public static function data($array)
     {
-        $static = new static();
+        $static = new self;
 
         $static->components = $array;
 

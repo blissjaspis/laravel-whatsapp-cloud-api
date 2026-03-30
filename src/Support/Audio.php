@@ -8,7 +8,7 @@ use BlissJaspis\WhatsappCloudApi\Contracts\Message;
  * Audio only support extension .aac, .amr, .mp3, m4a and .ogg
  * Max size 16 MB
  */
-class Audio implements Message
+final class Audio implements Message
 {
     protected string $defaultMediaIdOrUrl;
 
@@ -17,7 +17,7 @@ class Audio implements Message
     // asset or url
     public static function media(string $mediaIdOrUrl, string $type = 'asset')
     {
-        $static = new static();
+        $static = new self;
 
         $static->defaultMediaIdOrUrl = $mediaIdOrUrl;
         $static->defaultMediaSource = $type === 'asset' ? 'asset' : 'url';

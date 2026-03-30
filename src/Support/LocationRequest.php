@@ -4,13 +4,13 @@ namespace BlissJaspis\WhatsappCloudApi\Support;
 
 use BlissJaspis\WhatsappCloudApi\Contracts\Message;
 
-class LocationRequest implements Message
+final class LocationRequest implements Message
 {
     protected string $defaultMessage;
 
     public static function message(string $message): self
     {
-        $static = new static();
+        $static = new self;
 
         $static->defaultMessage = $message;
 

@@ -8,7 +8,7 @@ use BlissJaspis\WhatsappCloudApi\Contracts\Message;
  * Video only support extension .mp4 and .3gp
  * Max size 16 MB
  */
-class Video implements Message
+final class Video implements Message
 {
     protected string $defaultMediaIdOrUrl;
 
@@ -19,7 +19,7 @@ class Video implements Message
     // asset or url
     public static function media(string $mediaIdOrUrl, string $type = 'asset')
     {
-        $static = new static();
+        $static = new self;
 
         $static->defaultMediaIdOrUrl = $mediaIdOrUrl;
         $static->defaultMediaSource = $type === 'asset' ? 'asset' : 'url';

@@ -4,7 +4,7 @@ namespace BlissJaspis\WhatsappCloudApi\Support;
 
 use BlissJaspis\WhatsappCloudApi\Contracts\Message;
 
-class Location implements Message
+final class Location implements Message
 {
     protected string $defaultName;
 
@@ -16,7 +16,7 @@ class Location implements Message
 
     public static function mark()
     {
-        return new static();
+        return new self;
     }
 
     public function latitude(string $latitude): self

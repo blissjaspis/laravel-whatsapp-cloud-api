@@ -9,7 +9,7 @@ use BlissJaspis\WhatsappCloudApi\Contracts\Message;
  * @method $this disableLinkPreview()
  * @method array build()
  */
-class Text implements Message
+final class Text implements Message
 {
     protected bool $linkPreview = true;
 
@@ -17,7 +17,7 @@ class Text implements Message
 
     public static function message(string $message)
     {
-        $static = new static();
+        $static = new self;
 
         $static->defaultMessage = $message;
 

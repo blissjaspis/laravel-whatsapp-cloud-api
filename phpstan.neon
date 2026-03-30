@@ -1,0 +1,14 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - src
+        - tests
+        - config
+
+    level: 5
+
+    ignoreErrors:
+        # env() calls in config files are standard practice
+        - '#Called .env. outside of the config#'

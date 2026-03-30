@@ -5,11 +5,11 @@ return [
      * WhatsApp version API you want to use.
      */
     'version_sdk' => env('WHATSAPP_VERSION_SDK', 'v19.0'),
-    
+
     /**
-     * Whatsapp bussiness phone number ID
+     * WhatsApp business phone number ID
      */
-    'bussiness_phone_number_id' => env('WHATSAPP_PHONE_NUMBER_ID', ''),
+    'business_phone_number_id' => env('WHATSAPP_PHONE_NUMBER_ID', ''),
 
     /**
      * System User Access Tokens
@@ -20,5 +20,5 @@ return [
     /**
      * The country code you use on WhatsApp
      */
-    'country_code' => env('WHATSAPP_COUNTRY_CODE', '+62')
+    'country_code' => env('WHATSAPP_COUNTRY_CODE', '+62'),
 ];

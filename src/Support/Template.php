@@ -5,7 +5,7 @@ namespace BlissJaspis\WhatsappCloudApi\Support;
 use BlissJaspis\WhatsappCloudApi\Contracts\Message;
 use BlissJaspis\WhatsappCloudApi\Exceptions\TemplateComponentsEmpty;
 
-class Template implements Message
+final class Template implements Message
 {
     protected string $defaultName;
 
@@ -15,7 +15,7 @@ class Template implements Message
 
     public static function name(string $name)
     {
-        $static = new static();
+        $static = new self;
 
         $static->defaultName = $name;
 

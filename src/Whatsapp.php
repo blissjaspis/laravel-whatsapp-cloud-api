@@ -8,7 +8,7 @@ class Whatsapp
 {
     public function readMessage(string $messageId): Response
     {
-        return (new WhatsappRead())->send($messageId);
+        return (new WhatsappRead)->send($messageId);
     }
 
     public function media()

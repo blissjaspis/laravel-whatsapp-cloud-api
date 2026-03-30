@@ -9,7 +9,7 @@ use BlissJaspis\WhatsappCloudApi\Contracts\Message;
  *
  * Max size 100 MB
  */
-class Document implements Message
+final class Document implements Message
 {
     protected string $defaultMediaIdOrUrl;
 
@@ -22,7 +22,7 @@ class Document implements Message
     // asset or url
     public static function media(string $mediaIdOrUrl, string $type = 'asset')
     {
-        $static = new static();
+        $static = new self;
 
         $static->defaultMediaIdOrUrl = $mediaIdOrUrl;
         $static->defaultMediaSource = $type === 'asset' ? 'asset' : 'url';
@@ -32,14 +32,18 @@ class Document implements Message
 
     public function caption(string $caption = ''): self
     {
-        $this->defaultCaption = $caption ?? $this->defaultCaption;
+        if ($caption !== '') {
+            $this->defaultCaption = $caption;
+        }
 
         return $this;
     }
 
     public function filename(string $filename = ''): self
     {
-        $this->defaultFilename = $filename ?? $this->defaultFilename;
+        if ($filename !== '') {
+            $this->defaultFilename = $filename;
+        }
 
         return $this;
     }

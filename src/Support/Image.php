@@ -8,7 +8,7 @@ use BlissJaspis\WhatsappCloudApi\Contracts\Message;
  * Image only support extension .jpeg, .png and .webp
  * Max size 5 MB
  */
-class Image implements Message
+final class Image implements Message
 {
     protected string $defaultMediaIdOrUrl;
 
@@ -19,7 +19,7 @@ class Image implements Message
     // asset or url
     public static function media(string $mediaIdOrUrl, string $type = 'asset')
     {
-        $static = new static();
+        $static = new self;
 
         $static->defaultMediaIdOrUrl = $mediaIdOrUrl;
         $static->defaultMediaSource = $type === 'asset' ? 'asset' : 'url';
@@ -29,7 +29,9 @@ class Image implements Message
 
     public function caption(string $caption = ''): self
     {
-        $this->defaultCaption = $caption ?? $this->defaultCaption;
+        if ($caption !== '') {
+            $this->defaultCaption = $caption;
+        }
 
         return $this;
     }

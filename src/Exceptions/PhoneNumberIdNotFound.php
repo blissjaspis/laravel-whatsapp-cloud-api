@@ -4,6 +4,4 @@ namespace BlissJaspis\WhatsappCloudApi\Exceptions;
 
 use Exception;
 
-class PhoneNumberIdNotFound extends Exception
-{
-}
+class PhoneNumberIdNotFound extends Exception {}

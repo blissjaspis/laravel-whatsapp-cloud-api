@@ -10,8 +10,8 @@ class HttpProcess
 {
     public function __construct()
     {
-        if (! config('whatsapp-cloud-api.bussiness_phone_number_id')) {
-            throw new PhoneNumberIdNotFound('Bussiness phone number id not found.');
+        if (! config('whatsapp-cloud-api.business_phone_number_id')) {
+            throw new PhoneNumberIdNotFound('Business phone number id not found.');
         }
     }
 
@@ -19,7 +19,7 @@ class HttpProcess
     {
         $root = 'https://graph.facebook.com';
         $version = config('whatsapp-cloud-api.version_sdk');
-        $phoneNumberId = config('whatsapp-cloud-api.bussiness_phone_number_id');
+        $phoneNumberId = config('whatsapp-cloud-api.business_phone_number_id');
 
         $apiUrl = $usingPhoneNumber ? "{$root}/{$version}/{$phoneNumberId}" : "{$root}/{$version}";
 
