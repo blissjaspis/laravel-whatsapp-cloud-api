@@ -5,10 +5,27 @@
 
 Laravel package to interact with the WhatsApp Cloud API.
 
+## Upgrade Guide
+
+### Upgrading from 1.x to 2.0
+
+**Breaking Change:** The config key `bussiness_phone_number_id` has been renamed to `business_phone_number_id` (typo fix).
+
+If you were accessing the config directly in your code:
+```php
+// Before (1.x)
+config('whatsapp-cloud-api.bussiness_phone_number_id')
+
+// After (2.0)
+config('whatsapp-cloud-api.business_phone_number_id')
+```
+
+Note: If you only use the `.env` file and environment variables, no changes are needed.
+
 ## Requirements
 
-- PHP 8.1 or higher
-- Laravel 10, 11, or 12
+- PHP 8.2 or higher
+- Laravel 11 or 12
 
 ## Installation
 
