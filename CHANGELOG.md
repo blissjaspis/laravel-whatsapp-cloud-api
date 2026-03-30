@@ -20,7 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for media upload, download, retrieve and delete operations
 - Facade support for easier usage
 - Configuration file for WhatsApp Cloud API credentials
-- Support for Laravel 11 and 12
+- Support for Laravel 11 and above
+- Support for PHP 8.2 and above
 
 ### Fixed
 - Fixed typo in config: `bussiness_phone_number_id` changed to `business_phone_number_id`
