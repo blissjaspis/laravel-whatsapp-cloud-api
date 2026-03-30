@@ -25,7 +25,7 @@ Note: If you only use the `.env` file and environment variables, no changes are 
 ## Requirements
 
 - PHP 8.2 or higher
-- Laravel 11 or 12
+- Laravel 11, 12 or 13
 
 ## Installation
 
